@@ -48,14 +48,16 @@ jobs:
         run: |
             ponysay "Hello, Ponysay!"
             
-      - name: List Files
-        run: ls -R
+      
+      - name: Run Unit Tests
+        run: pytest
 
-      - name: Set Execute Permission
-        run: chmod +x /home/z390/Jobs-Steps-Actions-Py/run_test/run_test.py
-          
-      - name: Run run_test.py
-        run: python3 /home/z390/Jobs-Steps-Actions-Py/run_test/run_test.py
+      - name: Run Flask app
+        run: |
+            python multi_language.py &
+            sleep 30  
+            curl -I http://localhost:8083/ 
+
         env:
           MY_CUSTOM_VARIABLE: ${{ env.MY_CUSTOM_VARIABLE }}
   

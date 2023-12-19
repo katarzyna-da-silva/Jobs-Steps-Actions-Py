@@ -1,11 +1,11 @@
 # script.py
-import subprocess
+import os
 
 def main():
     try:
-        subprocess.run(["ponysay", "Hello DevOps ;) !"], check=True)
+        os.system("ponysay 'Hello DevOps ;) !'")
     except FileNotFoundError:
-        print("Ponysay ne fonctionne pas.")
+        print("Ponysay est mort.")
 
 if __name__ == "__main__":
     main()

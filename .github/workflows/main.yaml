@@ -48,7 +48,11 @@ jobs:
                 
       - name: Run Unit Tests
         run: python -m pytest
-  
+
+      - name: Run colors.py
+        run: |
+          python colors.py 
+
   test:
     needs: build
     runs-on: ubuntu-latest
@@ -61,11 +65,6 @@ jobs:
       - name: Run Ponysay
         run: |
             ponysay "Hello, Ponysay!"
-            
-      - name: Run colors.py
-        run: |
-            python colors.py 
-     
 
         env:
           MY_CUSTOM_VARIABLE: ${{ env.MY_CUSTOM_VARIABLE }}

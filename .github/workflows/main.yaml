@@ -28,16 +28,11 @@ jobs:
         id: add-new-line
         run: echo "Salut DevOps!" >> art-de-text.txt
 
-      - name: Step 5 - Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '14'
-
-      - name: Step 6 - Use the upload Artifact
+      - name: Step 5 - Use the upload Artifact
         if: success() 
         run: npm install actions/upload-artifact@v2
 
-      - name: Upload Artifact
+      - name: Step 6 - Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: artifacts_download

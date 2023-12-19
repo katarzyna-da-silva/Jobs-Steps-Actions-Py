@@ -28,15 +28,13 @@ jobs:
         id: add-new-line
         run: echo "Salut DevOps!" >> art-de-text.txt
 
-      - name: Step 5 - Use the upload Artifact
-        if: success() 
-        run: npm install actions/upload-artifact@v2
-
-      - name: Step 6 - Upload Artifact
+       - name: Step 5 - Use the upload Artifact Github Action
+        if: success()  
         uses: actions/upload-artifact@v2
         with:
           name: artifacts_download
           path: Jobs-Steps-Actions-Py
+
 
   test:
     needs: build

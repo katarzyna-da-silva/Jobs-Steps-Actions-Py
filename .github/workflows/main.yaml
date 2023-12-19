@@ -39,15 +39,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Update package lists
-        run: sudo apt-get update
         
       - name: Install Ponysay
         run: |
-          git clone https://github.com/erkin/ponysay.git
-          cd ponysay
-          sudo make install
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          pip3 install --user ponysay
         if: runner.os == 'Linux'
+      
       
 ##    - name: Install Ponysay (for testing purposes)
 ##     run: sudo apt-get install -y ponysay

@@ -9,8 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-        MY_CUSTOM_VARIABLE: "Hello from Build Job!" 
-        FILE_PATH: "art-text-cafe.txt" 
+      MY_CUSTOM_VARIABLE: "Hello from Build Job!" 
+      FILE_PATH: "art-text-cafe.txt" 
     steps:
       - name: Step 1 - Checkout Repository
         uses: actions/checkout@v4
@@ -27,13 +27,17 @@ jobs:
       - name: Step 4 - Append to File
         id: add-new-line
         run: echo "Salut DevOps!" >> art-de-text.txt
-      
-      - name: Step 5 - Use the upload Artifact Github Action
-        if: success()  
-        
-      - name: Upgrade upload-artifact
+
+      - name: Step 5 - Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+
+      - name: Step 6 - Use the upload Artifact
+        if: success() 
         run: npm install actions/upload-artifact@v2
 
+      - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: artifacts_download
@@ -43,16 +47,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-
-       - name: Install Ponysay
+      - name: Install Ponysay
         run: |
           sudo apt-get update
           sudo apt-get install -y ponysay
         if: runner.os == 'Linux'
-      
-
-      
-      
+     
 ##    - name: Install Ponysay (for testing purposes)
 ##     run: sudo apt-get install -y ponysay
         

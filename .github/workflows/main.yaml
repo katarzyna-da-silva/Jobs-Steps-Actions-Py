@@ -28,12 +28,16 @@ jobs:
         id: add-new-line
         run: echo "Salut DevOps!" >> art-de-text.txt
 
+      
+      - name: Change Working Directory
+        run: cd Jobs-Steps-Actions-Py
+
       - name: Step 5 - Use the upload Artifact Github Action
-        if: success()  
+        if: success()
         uses: actions/upload-artifact@v2
         with:
           name: artifacts_download
-          path: Jobs-Steps-Actions-Py
+          path: .
 
       - name: Set up Python
         uses: actions/setup-python@v4

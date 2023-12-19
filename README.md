@@ -1,7 +1,5 @@
 # Jobs-Steps-Actions-Py
 
-# Jobs-Steps-Actions-Py
-
 - This repository contains a GitHub Actions workflow to demonstrate a simple pipeline with steps and actions using Python.
 
 ## Workflow Description

@@ -1,0 +1,51 @@
+name: Test and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+        MY_CUSTOM_VARIABLE: "Hello from Build Job!" 
+        FILE_PATH: "art-text-cafe.txt" 
+    steps:
+      - name: Step 1 - Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Step 2 - Copy File
+        id: copy-file
+        run: |
+          cp art-de-text.txt $FILE_PATH
+
+      - name: Step 3 - Display File Contents
+        id: display-contents
+        run: cat $FILE_PATH
+
+      - name: Step 4 - Append to File
+        id: add-new-line
+        run: echo "Salut DevOps!" >> art-de-text.txt
+      
+      - name: Step 5 - Use the upload Artifact Github Action
+        if: success()  
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts_download
+          path: Jobs-Steps-Actions-Py
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Ponysay (for testing purposes)
+        run: sudo apt-get install -y ponysay
+        
+      - name: Run Test
+        run: python tests/run_test.py
+        env:
+            MY_CUSTOM_VARIABLE: ${{ env.MY_CUSTOM_VARIABLE }} 
+
+    
+  

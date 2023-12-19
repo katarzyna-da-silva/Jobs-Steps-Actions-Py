@@ -30,6 +30,10 @@ jobs:
       
       - name: Step 5 - Use the upload Artifact Github Action
         if: success()  
+        
+      - name: Upgrade upload-artifact
+        run: npm install actions/upload-artifact@v2
+
         uses: actions/upload-artifact@v2
         with:
           name: artifacts_download
@@ -40,12 +44,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Install Ponysay
+       - name: Install Ponysay
         run: |
-          git clone -b package https://github.com/erkin/ponysay.git
-          cd ponysay
-          sudo make install
-          if: runner.os == 'Linux'
+          sudo apt-get update
+          sudo apt-get install -y ponysay
+        if: runner.os == 'Linux'
+      
 
       
       

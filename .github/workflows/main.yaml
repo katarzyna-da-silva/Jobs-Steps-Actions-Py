@@ -43,10 +43,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo snap install ponysay
-          echo  ponysay "Hello, Ponysay!"
 
-      - name: Run Test
-        run: run_test.py
+      - name: Run Ponysay
+        run: |
+            ponysay "Hello, Ponysay!"
+
+      - name: Run run_test.py
+        run: python3 /Jobs-Step-Action-Py/run_test.py
         env:
           MY_CUSTOM_VARIABLE: ${{ env.MY_CUSTOM_VARIABLE }}
   

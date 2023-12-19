@@ -50,12 +50,12 @@ jobs:
             
       - name: List Files
         run: ls -R
-        
+
       - name: Set Execute Permission
-        run: chmod +x run_test.py
+        run: chmod +x run_test/run_test.py
           
       - name: Run run_test.py
-        run: python3 run_test.py
+        run: python3 run_test/run_test.py
         env:
           MY_CUSTOM_VARIABLE: ${{ env.MY_CUSTOM_VARIABLE }}
   

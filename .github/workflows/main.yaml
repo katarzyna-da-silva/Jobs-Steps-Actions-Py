@@ -44,9 +44,9 @@ jobs:
           sudo apt-get update
           sudo snap install ponysay
           echo  ponysay "Hello, Ponysay!"
-          
+
       - name: Run Test
-        run: python tests/run_test.py
+        run: run_test.py
         env:
           MY_CUSTOM_VARIABLE: ${{ env.MY_CUSTOM_VARIABLE }}
   
